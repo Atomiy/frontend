@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Backend Server -->
+        <domain includeSubdomains="false">47.98.34.166</domain>
+        <!-- Qiniu Test Domains -->
+        <domain includeSubdomains="true">clouddn.com</domain>
+        <domain includeSubdomains="true">qiniucdn.com</domain>
+        <domain includeSubdomains="true">qnssl.com</domain>
+        <domain includeSubdomains="true">qbox.me</domain>
+    </domain-config>
+    <!-- By default, cleartext traffic is not permitted for other domains -->
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>

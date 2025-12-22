@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Retro-futuristic Orange Palette -->
+    <color name="retro_orange_primary">#FF7A5A</color> <!-- A vibrant, slightly reddish-orange -->
+    <color name="retro_orange_dark">#D95F43</color> <!-- A deeper, more saturated orange -->
+    <color name="retro_orange_light">#FF9A82</color> <!-- A lighter, softer orange -->
+
+    <!-- Accent & Neutrals -->
+    <color name="retro_teal_accent">#00A99D</color> <!-- A contrasting teal for accents -->
+    <color name="retro_off_white_bg">#FDF6E3</color> <!-- A warm, creamy off-white for backgrounds -->
+    <color name="retro_dark_slate">#3C3C3C</color> <!-- A dark gray for text and primary UI elements -->
+    <color name="retro_light_gray">#BDBDBD</color> <!-- A light gray for dividers and disabled states -->
+
+    <!-- Standard Naming for Theme -->
+    <color name="colorPrimary">@color/retro_orange_primary</color>
+    <color name="colorPrimaryVariant">@color/retro_orange_dark</color>
+    <color name="colorOnPrimary">@color/retro_off_white_bg</color>
+    <color name="colorSecondary">@color/retro_teal_accent</color>
+    <color name="colorSecondaryVariant">@color/retro_teal_accent</color>
+    <color name="colorOnSecondary">@color/retro_off_white_bg</color>
+    <color name="backgroundColor">@color/retro_off_white_bg</color>
+    <color name="surfaceColor">@color/retro_off_white_bg</color>
+    <color name="textColor">@color/retro_dark_slate</color>
+</resources>

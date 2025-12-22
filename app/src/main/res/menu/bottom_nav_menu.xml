@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_nav_home"
+        android:title="穿搭" />
+    <item
+        android:id="@+id/navigation_weather"
+        android:icon="@drawable/ic_nav_weather"
+        android:title="天气" />
+    <item
+        android:id="@+id/navigation_create_post"
+        android:icon="@drawable/ic_add"
+        android:title="发布" />
+    <item
+        android:id="@+id/navigation_try_on"
+        android:icon="@drawable/ic_nav_try_on"
+        android:title="换装" />
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_nav_settings"
+        android:title="我的" />
+</menu>

@@ -9,6 +9,7 @@ import com.dresscode.app.data.model.Result
 import com.dresscode.app.data.model.WeatherData
 import com.dresscode.app.data.repository.WeatherRepository
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class WeatherViewModel : ViewModel() {
 

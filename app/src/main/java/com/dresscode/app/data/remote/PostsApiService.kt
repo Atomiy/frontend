@@ -18,6 +18,9 @@ interface PostsApiService {
     @GET("posts")
     suspend fun getPosts(@QueryMap filters: Map<String, String>): Response<ApiResponse<PaginatedResponse<Post>>>
 
+    @GET("users/me/favorites")
+    suspend fun getFavoritePosts(@QueryMap pagination: Map<String, String>): Response<ApiResponse<PaginatedResponse<Post>>>
+
     @GET("posts/{id}")
     suspend fun getPostById(@Path("id") postId: Long): Response<ApiResponse<Post>>
 

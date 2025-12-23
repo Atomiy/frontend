@@ -89,4 +89,7 @@
     <string name="try_on_error_person_photo">请先上传您的照片。</string>
     <string name="try_on_error_clothing_item">请选择一件服装。</string>
 
+    <!-- Favorites Screen -->
+    <string name="favorites_title">我的收藏</string>
+
 </resources>

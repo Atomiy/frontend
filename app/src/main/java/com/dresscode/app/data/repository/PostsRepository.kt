@@ -27,6 +27,8 @@ class PostsRepository {
         // and caught by the ViewModel.
     }
 
+    suspend fun getFavoritePosts(pagination: Map<String, String>) = postsService.getFavoritePosts(pagination)
+
     suspend fun getPostById(postId: Long) = postsService.getPostById(postId)
 
     suspend fun createPost(request: com.dresscode.app.data.model.CreatePostRequest) = postsService.createPost(request)

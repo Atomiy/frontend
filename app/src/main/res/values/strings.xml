@@ -88,5 +88,8 @@
     <string name="try_on_error_generic">An error occurred.</string>
     <string name="try_on_error_person_photo">Please upload your photo first.</string>
     <string name="try_on_error_clothing_item">Please select a clothing item.</string>
+    
+    <!-- Favorites Screen -->
+    <string name="favorites_title">My Favorites</string>
 
 </resources>

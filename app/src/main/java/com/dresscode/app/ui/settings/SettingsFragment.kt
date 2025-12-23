@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.dresscode.app.R
 import com.dresscode.app.data.local.SessionManager
 import com.dresscode.app.data.model.Result
@@ -44,6 +45,10 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        binding.favoritesButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_settings_to_favoritesFragment)
+        }
+    
         binding.saveButton.setOnClickListener {
             val nickname = binding.nicknameEditText.text.toString().trim()
             val gender = when(binding.genderRadioGroup.checkedRadioButtonId) {

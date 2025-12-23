@@ -30,6 +30,15 @@ class CreatePostViewModel : ViewModel() {
     val createState: LiveData<CreatePostState> = _createState
 
     private var uploadedImageUrl: String? = null
+    
+    // Helper to ensure URL has a scheme
+    private fun ensureScheme(url: String): String {
+        return if (url.startsWith("http://") || url.startsWith("https://")) {
+            url
+        } else {
+            "http://$url" // Assuming HTTP for Qiniu test domains
+        }
+    }
 
     fun uploadPostImage(content: ByteArray) {
         viewModelScope.launch {
@@ -68,7 +77,7 @@ class CreatePostViewModel : ViewModel() {
                     style = style,
                     season = season,
                     scene = scene,
-                    images = listOf(imageUrl),
+                    images = listOf(ensureScheme(imageUrl)), // Ensure scheme is added
                     tags = tags
                 )
                 val response = postsRepository.createPost(request)

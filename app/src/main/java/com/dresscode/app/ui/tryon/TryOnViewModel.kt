@@ -34,6 +34,15 @@ class TryOnViewModel : ViewModel() {
 
     private val _clothingImageUrl = MutableLiveData<String?>()
     val clothingImageUrl: LiveData<String?> = _clothingImageUrl
+    
+    // Helper to ensure URL has a scheme
+    private fun ensureScheme(url: String): String {
+        return if (url.startsWith("http://") || url.startsWith("https://")) {
+            url
+        } else {
+            "http://$url" // Assuming HTTP for Qiniu test domains
+        }
+    }
 
     fun setInitialClothingImage(url: String?) {
         _clothingImageUrl.value = url
@@ -77,8 +86,12 @@ class TryOnViewModel : ViewModel() {
         }
 
         viewModelScope.launch {
+            _tryOnState.value = TryOnState.Processing(0) // Assuming task ID is not needed yet
             try {
-                val request = com.dresscode.app.data.model.VirtualTryOnRequest(person_image_url = pUrl, clothing_image_url = cUrl)
+                val request = com.dresscode.app.data.model.VirtualTryOnRequest(
+                    person_image_url = ensureScheme(pUrl), // Ensure scheme is added
+                    clothing_image_url = ensureScheme(cUrl) // Ensure scheme is added
+                )
                 val response = repository.startVirtualTryOn(request)
                 if (response.isSuccessful && response.body()?.code == 0) {
                     val taskId = response.body()?.data?.internal_task_id

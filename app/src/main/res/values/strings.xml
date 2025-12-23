@@ -1,3 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DressCode</string>
+
+    <!-- General -->
+    <string name="error_generic">An error occurred.</string>
+    <string name="error_with_message">Error: %s</string>
+    <string name="error_loading_posts">Failed to load posts: %s</string>
+    <string name="error_fetching_weather">Failed to fetch weather: %s</string>
+    <string name="error_updating_favorite">Failed to update favorite: %s</string>
+    
+    <!-- Login Screen -->
+    <string name="login_title">DRESSCODE</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="go_to_register">No account yet? Create one</string>
+    <string name="login_success">Login Successful</string>
+    <string name="login_failed">Login Failed: %s</string>
+    <string name="login_empty_fields">Username and password cannot be empty</string>
+
+    <!-- Register Screen -->
+    <string name="create_account_title">Create Account</string>
+    <string name="nickname">Nickname</string>
+    <string name="register">Register</string>
+    <string name="go_to_login">Already have an account? Login</string>
+    <string name="gender">Gender</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_unknown">Prefer not to say</string>
+    <string name="register_fill_all_fields">Please fill all fields</string>
+    <string name="register_success">Registration Successful! Please login.</string>
+    <string name="register_failed">Registration Failed: %s</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_weather">Weather</string>
+    <string name="nav_publish">Publish</string>
+    <string name="nav_try_on">Try-On</string>
+    <string name="nav_me">Me</string>
+    
+    <!-- Home Screen -->
+    <string name="home_search_hint">Search outfits...</string>
+    <string name="home_filter_style">Style</string>
+    <string name="home_filter_season">Season</string>
+    <string name="home_filter_scene">Scene</string>
+    <string name="favorite_status_updated">Favorite status updated!</string>
+    <string name="try_on_no_image">This outfit has no image to try on.</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_title">My Profile</string>
+    <string name="settings_gender_label">Outfit suggestions for gender</string>
+    <string name="gender_all">Show All</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="logout">Logout</string>
+    <string name="profile_updated_success">Profile updated successfully!</string>
+    <string name="profile_update_failed">Update failed: %s</string>
+    <string name="error_fetching_user_data">Error fetching user data: %s</string>
+
+    <!-- Weather Screen -->
+    <string name="weather_refresh_location">Refresh Location</string>
+    <string name="weather_permission_denied">Location permission denied. Cannot fetch weather.</string>
+    <string name="weather_permission_needed">Location permission is needed to show local weather.</string>
+    <string name="weather_location_unavailable">Could not get current location. Is location enabled on your device?</string>
+    <string name="weather_location_failure">Failed to get location: %s</string>
+    <string name="weather_location_permission_error">Location permission error: %s</string>
+
+    <!-- Create Post Screen -->
+    <string name="create_post_title">Create New Post</string>
+    <string name="publish">Publish</string>
+    <string name="post_title_hint">Title</string>
+    <string name="post_content_hint">Content...</string>
+    <string name="post_style_hint">Style (e.g. Casual, Formal)</string>
+    <string name="post_season_hint">Season (e.g. Spring, Summer)</string>
+    <string name="post_scene_hint">Scene (e.g. Daily, Party)</string>
+    <string name="post_tags_hint">Tags (comma separated, e.g. dress,blue)</string>
+    <string name="create_post_select_image">Please select an image for your post.</string>
+    <string name="post_publish_success">Post published successfully!</string>
+
+    <!-- Try On Screen -->
+    <string name="try_on_result_placeholder">Result will appear here</string>
+    <string name="try_on_upload_photo">Upload Your Photo</string>
+    <string name="try_on_start_button">Virtual Try-On</string>
+    <string name="try_on_no_clothing">No clothing item selected.</string>
+    <string name="try_on_uploading_person">Uploading your photo...</string>
+    <string name="try_on_uploading_image">Uploading image...</string>
+    <string name="try_on_processing">AI is working its magic...</string>
+    <string name="try_on_error_generic">An error occurred.</string>
+    <string name="try_on_error_person_photo">Please upload your photo first.</string>
+    <string name="try_on_error_clothing_item">Please select a clothing item.</string>
+
 </resources>

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.dresscode.app.R
 import com.dresscode.app.data.model.Post
 import com.dresscode.app.data.model.Result
 import com.dresscode.app.databinding.FragmentPostDetailBinding
@@ -52,7 +53,7 @@ class PostDetailFragment : Fragment() {
                 }
                 is Result.Error -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Error: ${result.exception.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getString(R.string.error_with_message, result.exception.message), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -64,7 +65,8 @@ class PostDetailFragment : Fragment() {
         binding.authorNickname.text = post.author.nickname
         
         if (post.images.isNotEmpty()) {
-            binding.postImage.load(post.images[0].url)
+            val secureUrl = post.images[0].url.replace("http://", "https://")
+            binding.postImage.load(secureUrl)
         }
         
         binding.authorAvatar.load(post.author.avatar) {
@@ -80,10 +82,11 @@ class PostDetailFragment : Fragment() {
         
         binding.fabTryOn.setOnClickListener {
             if (post.images.isNotEmpty()) {
-                val action = PostDetailFragmentDirections.actionPostDetailFragmentToNavigationTryOn(post.images[0].url)
+                val secureUrl = post.images[0].url.replace("http://", "https://")
+                val action = PostDetailFragmentDirections.actionPostDetailFragmentToNavigationTryOn(secureUrl)
                 findNavController().navigate(action)
             } else {
-                Toast.makeText(context, "No image to try on for this post.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.try_on_no_image, Toast.LENGTH_SHORT).show()
             }
         }
     }

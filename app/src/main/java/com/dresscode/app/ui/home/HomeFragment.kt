@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.dresscode.app.R
 import com.dresscode.app.data.model.Result
 import com.dresscode.app.databinding.FragmentHomeBinding
 
@@ -43,8 +45,12 @@ class HomeFragment : Fragment() {
                 viewModel.toggleFavorite(post)
             },
             onItemClick = { post ->
-                val action = HomeFragmentDirections.actionNavigationHomeToPostDetailFragment(post.id)
-                findNavController().navigate(action)
+                if (post.images.isNotEmpty()) {
+                    val action = HomeFragmentDirections.actionNavigationHomeToPostDetailFragment(post.id)
+                    findNavController().navigate(action)
+                } else {
+                    Toast.makeText(context, R.string.try_on_no_image, Toast.LENGTH_SHORT).show()
+                }
             }
         )
         binding.postsRecyclerView.apply {
@@ -61,17 +67,18 @@ class HomeFragment : Fragment() {
         
         viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
             binding.swipeRefreshLayout.isRefreshing = false
-            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, getString(R.string.error_loading_posts, errorMessage), Toast.LENGTH_LONG).show()
         }
         
         viewModel.favoriteResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> { /* UI is updated optimistically */ }
                 is Result.Success -> {
-                    Toast.makeText(context, "Favorite status updated!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.favorite_status_updated, Toast.LENGTH_SHORT).show()
                 }
                 is Result.Error -> {
-                    Toast.makeText(context, "Error updating favorite: ${result.exception.message}", Toast.LENGTH_LONG).show()
+                    val message = getString(R.string.error_updating_favorite, result.exception.message)
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                     // Revert UI change if needed by refreshing
                     viewModel.refreshPosts() 
                 }

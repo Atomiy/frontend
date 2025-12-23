@@ -53,10 +53,10 @@ class CreatePostViewModel : ViewModel() {
                     uploadedImageUrl = response.body()?.data?.url
                     _createState.value = CreatePostState.Idle // Back to idle after upload
                 } else {
-                    _createState.value = CreatePostState.Error(response.body()?.message ?: "Image upload failed")
+                    _createState.value = CreatePostState.Error(response.body()?.message ?: "图片上传失败")
                 }
             } catch (e: Exception) {
-                _createState.value = CreatePostState.Error(e.message ?: "Unknown error")
+                _createState.value = CreatePostState.Error(e.message ?: "未知错误")
             }
         }
     }
@@ -64,7 +64,7 @@ class CreatePostViewModel : ViewModel() {
     fun createPost(title: String, content: String, style: String, season: String, scene: String, tags: List<String>) {
         val imageUrl = uploadedImageUrl
         if (imageUrl == null) {
-            _createState.value = CreatePostState.Error("Please select an image for your post.")
+            _createState.value = CreatePostState.Error("请为您的帖子选择一张图片。")
             return
         }
 
@@ -84,10 +84,10 @@ class CreatePostViewModel : ViewModel() {
                 if (response.isSuccessful && response.body()?.code == 0) {
                     _createState.value = CreatePostState.Success
                 } else {
-                    _createState.value = CreatePostState.Error(response.body()?.message ?: "Failed to publish post")
+                    _createState.value = CreatePostState.Error(response.body()?.message ?: "帖子发布失败")
                 }
             } catch (e: Exception) {
-                _createState.value = CreatePostState.Error(e.message ?: "Unknown error")
+                _createState.value = CreatePostState.Error(e.message ?: "未知错误")
             }
         }
     }

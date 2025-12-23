@@ -15,7 +15,7 @@
             android:id="@+id/title_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create New Post"
+            android:text="@string/create_post_title"
             android:textColor="@color/colorPrimary"
             android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Publish"
+            android:text="@string/publish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/title_create"
             app:layout_constraintBottom_toBottomOf="@id/title_create"/>
@@ -47,7 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:hint="Title"
+            android:hint="@string/post_title_hint"
             app:layout_constraintStart_toEndOf="@id/post_image_preview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/post_image_preview">
@@ -63,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:hint="Content..."
+            android:hint="@string/post_content_hint"
             app:layout_constraintTop_toBottomOf="@id/title_input_layout"
             app:layout_constraintStart_toStartOf="@id/title_input_layout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Style (e.g. Casual, Formal)"
+            android:hint="@string/post_style_hint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/post_image_preview">
@@ -97,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Season (e.g. Spring, Summer)"
+            android:hint="@string/post_season_hint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/style_input_layout">
@@ -113,7 +113,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Scene (e.g. Daily, Party)"
+            android:hint="@string/post_scene_hint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/season_input_layout">
@@ -129,7 +129,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Tags (comma separated, e.g. dress,blue)"
+            android:hint="@string/post_tags_hint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scene_input_layout">

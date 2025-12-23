@@ -16,7 +16,7 @@
             android:id="@+id/title_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Profile"
+            android:text="@string/settings_title"
             android:textSize="32sp"
             android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:hint="Nickname"
+            android:hint="@string/nickname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_settings">
@@ -45,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Username"
+            android:hint="@string/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nickname_layout">
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Gender for Outfit Suggestions"
+            android:text="@string/settings_gender_label"
             android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/username_layout" />
@@ -81,17 +81,17 @@
                 android:id="@+id/gender_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male" />
+                android:text="@string/gender_male" />
             <RadioButton
                 android:id="@+id/gender_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Female" />
+                android:text="@string/gender_female" />
             <RadioButton
                 android:id="@+id/gender_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Show All"
+                android:text="@string/gender_all"
                 android:checked="true"/>
         </RadioGroup>
 
@@ -100,7 +100,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginTop="24dp"
-            android:text="Save Changes"
+            android:text="@string/save_changes"
             app:layout_constraintTop_toBottomOf="@id/gender_radio_group"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -111,7 +111,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Logout"
+            android:text="@string/logout"
             android:textColor="@color/retro_orange_dark"
             app:layout_constraintTop_toBottomOf="@id/save_button"
             app:layout_constraintStart_toStartOf="parent"

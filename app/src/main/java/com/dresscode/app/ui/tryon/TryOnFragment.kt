@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.dresscode.app.R
 import com.dresscode.app.databinding.FragmentTryOnBinding
 import java.io.ByteArrayOutputStream
 
@@ -96,20 +97,20 @@ class TryOnFragment : Fragment() {
 
             when (state) {
                 is TryOnViewModel.TryOnState.Uploading -> {
-                    binding.resultPlaceholder.text = "Uploading image..."
+                    binding.resultPlaceholder.text = getString(R.string.try_on_uploading_image)
                 }
                 is TryOnViewModel.TryOnState.Processing -> {
-                    binding.resultPlaceholder.text = "AI is working its magic..."
+                    binding.resultPlaceholder.text = getString(R.string.try_on_processing)
                 }
                 is TryOnViewModel.TryOnState.Success -> {
                     binding.resultImageView.load(state.resultUrl)
                 }
                 is TryOnViewModel.TryOnState.Error -> {
-                    Toast.makeText(context, "Error: ${state.message}", Toast.LENGTH_LONG).show()
-                    binding.resultPlaceholder.text = "An error occurred."
+                    Toast.makeText(context, getString(R.string.error_with_message, state.message), Toast.LENGTH_LONG).show()
+                    binding.resultPlaceholder.text = getString(R.string.try_on_error_generic)
                 }
                 is TryOnViewModel.TryOnState.Idle -> {
-                     binding.resultPlaceholder.text = "Result will appear here"
+                     binding.resultPlaceholder.text = getString(R.string.try_on_result_placeholder)
                 }
             }
         }

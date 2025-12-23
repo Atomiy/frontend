@@ -49,7 +49,7 @@ class LoginFragment : Fragment() {
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 viewModel.login(username, password)
             } else {
-                Toast.makeText(context, "Username and password cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.login_empty_fields, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -62,7 +62,7 @@ class LoginFragment : Fragment() {
                 }
                 is Result.Success -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.login_success, Toast.LENGTH_SHORT).show()
                     
                     // Persist token
                     val sessionManager = SessionManager(requireContext())
@@ -74,7 +74,8 @@ class LoginFragment : Fragment() {
                 }
                 is Result.Error -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Login Failed: ${result.exception.message}", Toast.LENGTH_LONG).show()
+                    val message = getString(R.string.login_failed, result.exception.message)
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                 }
             }
         }

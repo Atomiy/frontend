@@ -31,7 +31,7 @@ class WeatherFragment : Fragment() {
         if (isGranted) {
             getCurrentLocationAndFetchWeather()
         } else {
-            Toast.makeText(context, "Location permission denied. Cannot fetch weather.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, R.string.weather_permission_denied, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -62,7 +62,7 @@ class WeatherFragment : Fragment() {
                 getCurrentLocationAndFetchWeather()
             }
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                Toast.makeText(context, "Location permission is needed to show local weather.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, R.string.weather_permission_needed, Toast.LENGTH_LONG).show()
                 locationPermissionRequest.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             }
             else -> {
@@ -81,18 +81,20 @@ class WeatherFragment : Fragment() {
                         viewModel.fetchWeather(location.latitude, location.longitude)
                     } else {
                         context?.let {
-                            Toast.makeText(it, "Could not get current location. Is location enabled on your device?", Toast.LENGTH_LONG).show()
+                            Toast.makeText(it, R.string.weather_location_unavailable, Toast.LENGTH_LONG).show()
                         }
                     }
                 }
                 .addOnFailureListener { e ->
                     context?.let {
-                        Toast.makeText(it, "Failed to get location: ${e.message}", Toast.LENGTH_LONG).show()
+                        val message = getString(R.string.weather_location_failure, e.message)
+                        Toast.makeText(it, message, Toast.LENGTH_LONG).show()
                     }
                 }
         } catch (e: SecurityException) {
              context?.let {
-                Toast.makeText(it, "Location permission error: ${e.message}", Toast.LENGTH_LONG).show()
+                val message = getString(R.string.weather_location_permission_error, e.message)
+                Toast.makeText(it, message, Toast.LENGTH_LONG).show()
              }
         }
     }
@@ -107,7 +109,8 @@ class WeatherFragment : Fragment() {
                 }
                 is Result.Error -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Error fetching weather: ${result.exception.message}", Toast.LENGTH_LONG).show()
+                    val message = getString(R.string.error_fetching_weather, result.exception.message)
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                 }
             }
         }

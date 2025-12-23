@@ -21,7 +21,7 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:queryHint="Search outfits..."
+                android:queryHint="@string/home_search_hint"
                 android:iconifiedByDefault="false" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -48,19 +48,19 @@
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Style" />
+                android:text="@string/home_filter_style" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_season"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Season" />
+                android:text="@string/home_filter_season" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_scene"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scene" />
+                android:text="@string/home_filter_scene" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>

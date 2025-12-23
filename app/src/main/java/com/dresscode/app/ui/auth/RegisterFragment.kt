@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.dresscode.app.R
 import com.dresscode.app.databinding.FragmentRegisterBinding
 import com.dresscode.app.data.model.Result
 
@@ -43,7 +44,7 @@ class RegisterFragment : Fragment() {
             val selectedGenderId = binding.genderRadioGroup.checkedRadioButtonId
             
             if (username.isEmpty() || nickname.isEmpty() || password.isEmpty() || selectedGenderId == -1) {
-                Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.register_fill_all_fields, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             
@@ -65,12 +66,13 @@ class RegisterFragment : Fragment() {
                 }
                 is Result.Success -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Registration Successful! Please login.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, R.string.register_success, Toast.LENGTH_LONG).show()
                     parentFragmentManager.popBackStack()
                 }
                 is Result.Error -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Registration Failed: ${result.exception.message}", Toast.LENGTH_LONG).show()
+                    val message = getString(R.string.register_failed, result.exception.message)
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                 }
             }
         }

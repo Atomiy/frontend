@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.dresscode.app.R
 import com.dresscode.app.data.local.SessionManager
 import com.dresscode.app.data.model.Result
 import com.dresscode.app.data.model.User
@@ -72,7 +73,8 @@ class SettingsFragment : Fragment() {
                 }
                 is Result.Error -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Error fetching user data: ${result.exception.message}", Toast.LENGTH_LONG).show()
+                    val message = getString(R.string.error_fetching_user_data, result.exception.message)
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -82,12 +84,13 @@ class SettingsFragment : Fragment() {
                 is Result.Loading -> binding.loadingProgressBar.isVisible = true
                 is Result.Success -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Profile updated successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.profile_updated_success, Toast.LENGTH_SHORT).show()
                     populateUserData(result.data)
                 }
                 is Result.Error -> {
                     binding.loadingProgressBar.isVisible = false
-                    Toast.makeText(context, "Update failed: ${result.exception.message}", Toast.LENGTH_LONG).show()
+                    val message = getString(R.string.profile_update_failed, result.exception.message)
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                 }
             }
         }

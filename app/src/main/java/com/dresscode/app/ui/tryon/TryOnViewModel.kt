@@ -64,10 +64,10 @@ class TryOnViewModel : ViewModel() {
                     }
                     _tryOnState.value = TryOnState.Idle // Back to idle after upload
                 } else {
-                    _tryOnState.value = TryOnState.Error(response.body()?.message ?: "Upload failed")
+                    _tryOnState.value = TryOnState.Error(response.body()?.message ?: "上传失败")
                 }
             } catch (e: Exception) {
-                _tryOnState.value = TryOnState.Error(e.message ?: "Unknown error")
+                _tryOnState.value = TryOnState.Error(e.message ?: "未知错误")
             }
         }
     }
@@ -77,11 +77,11 @@ class TryOnViewModel : ViewModel() {
         val cUrl = clothingImageUrl.value
 
         if (pUrl.isNullOrBlank()) {
-            _tryOnState.value = TryOnState.Error("Please upload your photo first.")
+            _tryOnState.value = TryOnState.Error("请先上传您的照片。")
             return
         }
         if (cUrl.isNullOrBlank()) {
-            _tryOnState.value = TryOnState.Error("Please select a clothing item.")
+            _tryOnState.value = TryOnState.Error("请选择一件服装。")
             return
         }
 
@@ -99,13 +99,13 @@ class TryOnViewModel : ViewModel() {
                         _tryOnState.value = TryOnState.Processing(taskId)
                         pollForStatus(taskId)
                     } else {
-                        _tryOnState.value = TryOnState.Error("Failed to get task ID.")
+                        _tryOnState.value = TryOnState.Error("未能获取任务ID。")
                     }
                 } else {
-                     _tryOnState.value = TryOnState.Error(response.body()?.message ?: "Failed to start process")
+                     _tryOnState.value = TryOnState.Error(response.body()?.message ?: "无法启动换装任务")
                 }
             } catch (e: Exception) {
-                _tryOnState.value = TryOnState.Error(e.message ?: "Unknown error")
+                _tryOnState.value = TryOnState.Error(e.message ?: "未知错误")
             }
         }
     }
@@ -121,14 +121,14 @@ class TryOnViewModel : ViewModel() {
                             "SUCCEED" -> {
                                 val resultUrl = status.result_url
                                 if (resultUrl.isNullOrBlank()) {
-                                    _tryOnState.value = TryOnState.Error("Processing succeeded but result URL is empty.")
+                                    _tryOnState.value = TryOnState.Error("处理成功但结果URL为空。")
                                 } else {
                                     _tryOnState.value = TryOnState.Success(ensureScheme(resultUrl))
                                 }
                                 return@launch // Stop polling
                             }
                             "FAILED" -> {
-                                _tryOnState.value = TryOnState.Error("Processing failed.")
+                                _tryOnState.value = TryOnState.Error("AI处理失败。")
                                 return@launch // Stop polling
                             }
                             "PENDING" -> {
@@ -136,11 +136,11 @@ class TryOnViewModel : ViewModel() {
                             }
                         }
                     } else {
-                         _tryOnState.value = TryOnState.Error(response.body()?.message ?: "Failed to get status")
+                         _tryOnState.value = TryOnState.Error(response.body()?.message ?: "无法获取任务状态")
                          return@launch
                     }
                 } catch (e: Exception) {
-                    _tryOnState.value = TryOnState.Error(e.message ?: "Unknown error")
+                    _tryOnState.value = TryOnState.Error(e.message ?: "未知错误")
                     return@launch
                 }
                 delay(3000) // Poll every 3 seconds

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import coil.load
+import com.dresscode.app.R
 import com.dresscode.app.databinding.FragmentCreatePostBinding
 
 class CreatePostFragment : Fragment() {
@@ -62,7 +63,7 @@ class CreatePostFragment : Fragment() {
             val tags = binding.tagsEditText.text.toString().split(",").map { it.trim() }
 
             if (title.isEmpty() || content.isEmpty() || style.isEmpty() || season.isEmpty() || scene.isEmpty()) {
-                Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.register_fill_all_fields, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             
@@ -76,11 +77,12 @@ class CreatePostFragment : Fragment() {
 
             when (state) {
                 is CreatePostViewModel.CreatePostState.Success -> {
-                    Toast.makeText(context, "Post published successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.post_publish_success, Toast.LENGTH_SHORT).show()
                     findNavController().navigateUp() // Go back to the previous screen
                 }
                 is CreatePostViewModel.CreatePostState.Error -> {
-                    Toast.makeText(context, "Error: ${state.message}", Toast.LENGTH_LONG).show()
+                    val message = getString(R.string.error_with_message, state.message)
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                 }
                 else -> {
                     // Idle, Uploading, Publishing

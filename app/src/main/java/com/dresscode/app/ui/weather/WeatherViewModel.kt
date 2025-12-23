@@ -17,28 +17,43 @@ class WeatherViewModel : ViewModel() {
     private val _weather = MutableLiveData<Result<WeatherData>>()
     val weather: LiveData<Result<WeatherData>> = _weather
 
-    fun fetchWeather(latitude: Double, longitude: Double) {
+    fun fetchWeatherByLocation(latitude: Double, longitude: Double) {
         viewModelScope.launch {
             _weather.value = Result.Loading
             try {
-                val response = weatherRepository.getWeather(latitude, longitude)
-                if (response.isSuccessful && response.body() != null) {
-                    val owmResponse = response.body()!!
-                    // Map the complex API response to the simple data class the UI uses
-                    val uiData = WeatherData(
-                        cityName = owmResponse.name,
-                        temperature = owmResponse.main.temp,
-                        description = owmResponse.weather.firstOrNull()?.main ?: "Unknown",
-                        icon = owmResponse.weather.firstOrNull()?.icon ?: ""
-                    )
-                    _weather.value = Result.Success(uiData)
-                } else {
-                    val error = response.errorBody()?.string() ?: "Failed to fetch weather"
-                    _weather.value = Result.Error(Exception(error))
-                }
+                val response = weatherRepository.getWeatherByLocation(latitude, longitude)
+                handleWeatherResponse(response)
             } catch (e: Exception) {
                 _weather.value = Result.Error(e)
             }
+        }
+    }
+
+    fun fetchWeatherByCityName(cityName: String) {
+        viewModelScope.launch {
+            _weather.value = Result.Loading
+            try {
+                val response = weatherRepository.getWeatherByCityName(cityName)
+                handleWeatherResponse(response)
+            } catch (e: Exception) {
+                _weather.value = Result.Error(e)
+            }
+        }
+    }
+
+    private fun handleWeatherResponse(response: Response<com.dresscode.app.data.model.owm.WeatherResponse>) {
+        if (response.isSuccessful && response.body() != null) {
+            val owmResponse = response.body()!!
+            val uiData = WeatherData(
+                cityName = owmResponse.name,
+                temperature = owmResponse.main.temp,
+                description = owmResponse.weather.firstOrNull()?.main ?: "Unknown",
+                icon = owmResponse.weather.firstOrNull()?.icon ?: ""
+            )
+            _weather.value = Result.Success(uiData)
+        } else {
+            val error = response.errorBody()?.string() ?: "Failed to fetch weather"
+            _weather.value = Result.Error(Exception(error))
         }
     }
 }

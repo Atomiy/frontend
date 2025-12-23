@@ -11,7 +11,10 @@ class WeatherRepository {
         OwmRetrofitClient.instance.create(WeatherApiService::class.java)
     }
 
-    suspend fun getWeather(latitude: Double, longitude: Double) = 
-        weatherService.getWeather(latitude, longitude, BuildConfig.OWM_API_KEY)
+    suspend fun getWeatherByLocation(latitude: Double, longitude: Double) = 
+        weatherService.getWeatherByLocation(latitude, longitude, BuildConfig.OWM_API_KEY)
+        
+    suspend fun getWeatherByCityName(cityName: String) =
+        weatherService.getWeatherByCityName(cityName, BuildConfig.OWM_API_KEY)
 }
 

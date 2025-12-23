@@ -47,9 +47,18 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        
         binding.refreshButton.setOnClickListener {
             checkLocationPermission()
         }
+        
+        binding.searchButton.setOnClickListener {
+            val cityName = binding.cityInput.text.toString().trim()
+            if (cityName.isNotEmpty()) {
+                viewModel.fetchWeatherByCityName(cityName)
+            }
+        }
+        
         checkLocationPermission()
     }
 
@@ -78,7 +87,7 @@ class WeatherFragment : Fragment() {
             fusedLocationClient.getCurrentLocation(com.google.android.gms.location.Priority.PRIORITY_BALANCED_POWER_ACCURACY, null)
                 .addOnSuccessListener { location ->
                     if (location != null) {
-                        viewModel.fetchWeather(location.latitude, location.longitude)
+                        viewModel.fetchWeatherByLocation(location.latitude, location.longitude)
                     } else {
                         context?.let {
                             Toast.makeText(it, R.string.weather_location_unavailable, Toast.LENGTH_LONG).show()

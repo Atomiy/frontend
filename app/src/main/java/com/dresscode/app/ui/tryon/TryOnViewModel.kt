@@ -119,7 +119,12 @@ class TryOnViewModel : ViewModel() {
                         val status = response.body()?.data
                         when (status?.status) {
                             "SUCCEED" -> {
-                                _tryOnState.value = TryOnState.Success(status.result_url ?: "")
+                                val resultUrl = status.result_url
+                                if (resultUrl.isNullOrBlank()) {
+                                    _tryOnState.value = TryOnState.Error("Processing succeeded but result URL is empty.")
+                                } else {
+                                    _tryOnState.value = TryOnState.Success(ensureScheme(resultUrl))
+                                }
                                 return@launch // Stop polling
                             }
                             "FAILED" -> {

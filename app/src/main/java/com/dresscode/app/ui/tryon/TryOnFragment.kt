@@ -78,12 +78,16 @@ class TryOnFragment : Fragment() {
     }
 
     private fun setupObservers() {
+        val ensureScheme = { url: String ->
+            if (url.startsWith("http://") || url.startsWith("https://")) url else "http://$url"
+        }
+
         viewModel.personImageUrl.observe(viewLifecycleOwner) { url ->
-            url?.let { binding.personImageView.load(it) }
+            url?.let { binding.personImageView.load(ensureScheme(it)) }
         }
         
         viewModel.clothingImageUrl.observe(viewLifecycleOwner) { url ->
-            url?.let { binding.clothingImageView.load(it) }
+            url?.let { binding.clothingImageView.load(ensureScheme(it)) }
         }
 
         viewModel.tryOnState.observe(viewLifecycleOwner) { state ->
